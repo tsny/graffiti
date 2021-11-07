@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener,
         listView.adapter = listingsAdapter
 
 
-        listView.setOnItemClickListener { adapterView, view, i, l ->
-            getComments(currentSub, listingsArray[i].id)
+        listView.setOnItemClickListener { _, _, i, _ ->
+            setThread(currentSub, listingsArray[i].id)
         }
 
         tts = TextToSpeech(this, this)
@@ -105,7 +105,9 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener,
     // Sets the list items on click to open the comments section
     private fun setItemOnClickToOpenComment() {
         listView.setOnItemClickListener { _, _, i, _ ->
-            getComments(currentSub, listingsArray[i].id)
+            val postName = listingsArray[i].name
+            title = "$currentSub -- $postName"
+            setThread(currentSub, listingsArray[i].id)
         }
     }
 
@@ -163,7 +165,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener,
         }
     }
 
-    private fun getComments(sub: String, post: String): Throwable? {
+    // Sets the viewed subreddit thread
+    private fun setThread(sub: String, post: String): Throwable? {
         CoroutineScope(IO).launch {
             val req = ServiceBuilder.buildService(ServiceBuilder.RedditService::class.java)
             val call = req.getPost(sub, post, null, null)
