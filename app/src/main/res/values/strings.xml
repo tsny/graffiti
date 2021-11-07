@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Graffiti</string>
+    <string name="channel_name">graffiti-notif</string>
+    <string name="channel_description">notifications</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="go_to_sub">Go To Sub</string>
+    <string name="nextPageBtn">Next Page</string>
+    <string name="searchBtn">Search</string>
+    <string name="search_sub_btn">Search</string>
+    <string name="subreddit_name">Subreddit Name</string>
+    <string name="home_sub_text">Go To Home Sub</string>
+</resources>
